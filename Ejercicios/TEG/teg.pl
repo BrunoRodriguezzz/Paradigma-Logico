@@ -61,8 +61,13 @@ esFuerte(C):-
 
 % Destruir al ejercito amarillo
 
+color(rojo).
+color(azul).
+color(verde).
+
 ejercitoDestruido(C):-
-    not(ocupa(C,_,_)).
+    color(C),
+    not(ocupa(C,_,_)).   % Si estuviera solo esta linea no seria inversible, ya que not es una funcion de orden superior.
 
 % Conquistar Asia
 
