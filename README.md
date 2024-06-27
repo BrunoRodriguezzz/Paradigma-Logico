@@ -8,9 +8,19 @@ A partir de ciertas premisas, vamos a generar conclusiones. Estas premisas o hec
 
 El objetivo es que la definicion del problema sea la solucion del mismo.
 
-- [Universo Cerrado](#universo-cerrado)
-- [Individuos e incongnitas](#individuos-e-incongnitas)
-- [Sintaxis](#sintaxis)
+- [ Paradigma-Logico ](#-paradigma-logico-)
+  - [Universo Cerrado](#universo-cerrado)
+  - [Individuos e incongnitas](#individuos-e-incongnitas)
+  - [Sintaxis](#sintaxis)
+  - [Cuantificion existencial](#cuantificion-existencial)
+  - [Inverisibilidad](#inverisibilidad)
+  - [Declarativo](#declarativo)
+  - [Acoplamiento](#acoplamiento)
+  - [Refactorizacion](#refactorizacion)
+
+> Recomiendo leer por el final del paradigma el Modulo Logico 6 👍
+
+Un resumen de los [errores mas frecuentes](https://wiki.uqbar.org/wiki/articles/errores-frecuentes-al-programar-en-logico.html).
 
 ## Universo Cerrado
 
@@ -51,6 +61,10 @@ conquistarContinente(Continente, Color):-
 ```
 Lo que estoy haciendo en este caso es verificar que todos los Paises (P), dentro del Continente (C) son del Color (C).
 
+`findall` Tienen 3 parametros: lo que busco, como lo busco y donde lo guardo. En resumen arma una lista de lo que busco.
+
+> Un error comun es usar un findall y despues un member con la lista que genero, esta mal ya que son operaciones inversas.
+
 ## Cuantificion existencial
 
 Existe algun elemento que cumple (cuando hay variables), pero siguen siendo un predicado por lo cual no "devuelve" el elemento solo lo muestra, la consulta es verdadera o falsa.
@@ -64,9 +78,31 @@ A /= B
 ```
 Que comparan dos varibles que no tienen valor (y devuelve false).
 
-Ningun predicado de orden superior  liga valores, solo devuelven true o false, por lo que se que no es inversible.
+*Ningun predicado de orden superior liga valores, solo devuelven true o false, por lo que se que no es inversible.*
 
 ## Declarativo
 
 Se separa el conocimiento de lo operativo. Que la descripcion del problema sea la solucion.
-Una forma de darnos cuentas es ver que el orden no importa.
+Una forma de darnos cuenta es ver que el orden no importa.
+
+## Acoplamiento
+
+El acoplamiento es el grado en que los componentes se conocen. Muy en resumen representa que si un predicado que esta vinculado a otros mas (Ejemplo: `conquistarContinente`), si tiene buen acoplamiento significa que si cambia algo en `pais` o en `ocupa`, no hay que modificar `conquistarContinente`.
+
+## Refactorizacion
+
+Consiste en mejorar nuestro codigo para que sea una solucion mas general o sea mas expresivo, aun cuando funcione. Ejemplo:
+``` SWI prolog
+todosSiguenA(Rey):-
+	personaje(Rey),
+	not((personaje(Personaje), not(sigueA(Personaje, Rey)))). 
+```
+>Si bien el codigo funciona y es inversible no se entiende mucho
+
+Usando logica se puede simplificar y pasar de ∄x / p(x)  ∧ ￢q(x) a **∀x / p(x) ⇒ q(x)**, que en el codigo se ve asi:
+
+``` SWI prolog
+todosSiguenA(Rey) :-
+	personaje(Rey),
+	forall((personaje(Personaje), sigueA(Personaje, Rey))).
+```
