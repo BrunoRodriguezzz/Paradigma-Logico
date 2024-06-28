@@ -35,7 +35,6 @@ partida(dimitri,romanos,fundicion).
 
 desarrolloTecnologia(Jugador,Tecnologia):- partida(Jugador,_,Tecnologia).
 
-
 expertoEnMetales(Jugador):-
     jugador(Jugador),
     desarrolloTecnologia(Jugador,herreria),

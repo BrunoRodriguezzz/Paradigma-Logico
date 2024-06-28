@@ -61,9 +61,17 @@ conquistarContinente(Continente, Color):-
 ```
 Lo que estoy haciendo en este caso es verificar que todos los Paises (P), dentro del Continente (C) son del Color (C).
 
-`findall` Tienen 3 parametros: lo que busco, como lo busco y donde lo guardo. En resumen arma una lista de lo que busco.
+`findall` Tienen 3 parametros: lo que busco, como lo busco y donde lo guardo. En resumen arma una lista de lo que busco. El como lo busco puede ser as de un predicado.
 
-> Un error comun es usar un findall y despues un member con la lista que genero, esta mal ya que son operaciones inversas.
+> Un error comun es usar un findall y despues un member con la lista que genero, esta mal ya que son operaciones inversas, armo una lista para despues desarmarla.
+
+`length` Sirve para determinar la cantidad de elementos hay en una lista. `length(Lista,CantElementos)`.
+
+`sum_list` Suma una lista de numeros. Ejemplo: `sum_list([3,4,5],12)`.
+
+`member` Determmina si un elemento pertenece a una lista. Ejemplo: `member(3,[1,2,3,4])`. Muy util utilizar `member(X,[1,2,3,4])` para que `X` "tome" el valor de cada miermbro de la lista.
+
+`append` Concatena listas. Ejemplo: `append([1,2],[3,4],[1,2,3,4])`.
 
 ## Cuantificion existencial
 
@@ -106,3 +114,28 @@ todosSiguenA(Rey) :-
 	personaje(Rey),
 	forall((personaje(Personaje), sigueA(Personaje, Rey))).
 ```
+
+## Listas
+
+La sintaxis es la mismma que la de haskell (Ej: `[3,4,5,6,7]`). Se puede separar la cabeza de la cola con `[X|XS]` de esta forma `X` es la cabeza y `[XS]` es la cola. 
+Son utiles para agrupar o para poder contar elementos (haciendo uso de `length`).
+Los predicados de listas no son del todo inversibles, lo cual no quiere decir que nuestro predicado que usa un predicado de lista no sea inversible.
+
+**Indispensable para la suma o para saber la cantidad** (casos donde uso lista, en el resto no).
+
+## Functores
+
+En resumen es un nuevo tipo de dato, que es un preficado, que se le "pasa" a otro. Ejemplo:
+
+``` SWI prolog
+persona(juan,bsas,fecha(20,1,2000)).
+
+esMayor(P):-
+  persona(P,_,F),
+  edad(F,E),
+  E > 18.
+
+edad(fecha(D,M,A),E):-
+  E is 2024 - A.
+```
+
