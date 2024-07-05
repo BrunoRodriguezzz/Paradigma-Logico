@@ -89,6 +89,8 @@ episodiosSiguientes(Episodio,EpisodioPosterior):-
 
 % Realizar analisis de esto.
 
+% El nuevoEpisodio deberra tener como mucho 6, hay que separarlos mas partes.
+
 nuevoEpisodio(Heroe, Villano, Extra, Dispositivo):-
     maestro(Heroe),
     not(apareceEn(Heroe,_,oscuro)),
