@@ -23,7 +23,7 @@ maestro(duku).
 
 %caracterizacion(Personaje,Aspecto).
 %aspectos:
-% ser(Especie,Tamaño)
+% ser(Especie,Tamanio)
 % humano
 % robot(Forma)
 caracterizacion(chewbacca,ser(wookiee,10)).
@@ -69,7 +69,7 @@ precedeA(unaNuevaEsperanza,elImperioContrataca).
 % El extra tiene que ser un personaje de aspecto exótico para mantener la estética de la saga. Tiene que 
 % tener un vínculo estrecho con los protagonistas, que consiste en que haya estado junto al heroe o al villano 
 % en todos los episodios en los que dicho extra apareció. Se considera exótico a los robots que no tengan forma 
-% de esfera y a los seres de gran tamaño (mayor a 15) o de especie desconocida.
+% de esfera y a los seres de gran tamanio (mayor a 15) o de especie desconocida.
 % El dispositivo tiene que ser reconocible por el público, por lo que tiene que ser un elemento que haya estado 
 % presente en muchos episodios (3 o más)
 

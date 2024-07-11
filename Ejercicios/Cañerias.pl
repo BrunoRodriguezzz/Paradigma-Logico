@@ -1,7 +1,7 @@
 /*
-En un juego de "construya su cañería", hay piezas de distintos tipos: codos, caños y canillas.
+En un juego de "construya su caniería", hay piezas de distintos tipos: codos, canios y canillas.
 De los codos me interesa el color, p.ej. un codo rojo.
-De los caños me interesan color y longitud, p.ej. un caño rojo de 3 metros.
+De los canios me interesan color y longitud, p.ej. un canio rojo de 3 metros.
 De las canillas me interesan: tipo (de la pieza que se gira para abrir/cerrar), color y ancho (de la boca).
 P.ej. una canilla triangular roja de 4 cm de ancho.
 */
@@ -33,9 +33,9 @@ pieza(extremo(_,_)).
 % [codo(rojo), codo(amarillo), codo(verde), codo(azul), canio(rojo, 3), canio(amarillo, 3), canio(verde, 4), canio(azul, 5), canilla(triangular, rojo, 4), canilla(circular, verde, 3), canilla(cuadrada, azul, 2)].
 
 /*
-Definir un predicado que relacione una cañería con su precio. Una cañería es una lista de piezas. Los precios son:
+Definir un predicado que relacione una caniería con su precio. Una caniería es una lista de piezas. Los precios son:
 codos: $5.
-caños: $3 el metro.
+canios: $3 el metro.
 canillas: las triangulares $20, el resto $12 hasta 5 cm de ancho, $15 si son de más de 5 cm.
 */
 precioCodo(5).
@@ -66,10 +66,10 @@ precioCanieria([Pieza|Resto], PrecioTotal) :-
 % Puedo enchufar dos piezas si son del mismo color, o si son de colores enchufables. 
 % Las piezas azules pueden enchufarse a la izquierda de las rojas, y las rojas pueden enchufarse a la izquierda de las negras. 
 % Las azules no se pueden enchufar a la izquierda de las negras, tiene que haber una roja en el medio. P.ej.
-% sí puedo enchufar (codo rojo, caño negro de 3 m).
-% sí puedo enchufar (codo rojo, caño rojo de 3 m) (mismo color).
-% no puedo enchufar (caño negro de 3 m, codo rojo) (el rojo tiene que estar a la izquierda del negro).
-% no puedo enchufar (codo azul, caño negro de 3 m) (tiene que haber uno rojo en el medio).
+% sí puedo enchufar (codo rojo, canio negro de 3 m).
+% sí puedo enchufar (codo rojo, canio rojo de 3 m) (mismo color).
+% no puedo enchufar (canio negro de 3 m, codo rojo) (el rojo tiene que estar a la izquierda del negro).
+% no puedo enchufar (codo azul, canio negro de 3 m) (tiene que haber uno rojo en el medio).
 
 colorPieza(codo(Color), Color).
 colorPieza(canio(Color,_), Color).
@@ -146,13 +146,13 @@ puedoEnchufar(Canieria,[P2|_]):-
     colorPieza(P2,C2),
     sonEnchufables(C1,C2).
 
-% Modificar el predicado puedoEnchufar/2 de forma tal que pueda preguntar por elementos sueltos o por cañerías ya armadas. 
-% P.ej. una cañería (codo azul, canilla roja) la puedo enchufar a la izquierda de un codo rojo (o negro), 
-% y a la derecha de un caño azul. Ayuda: si tengo una cañería a la izquierda, ¿qué color tengo que mirar? 
-% Idem si tengo una cañería a la derecha.
+% Modificar el predicado puedoEnchufar/2 de forma tal que pueda preguntar por elementos sueltos o por canierías ya armadas. 
+% P.ej. una caniería (codo azul, canilla roja) la puedo enchufar a la izquierda de un codo rojo (o negro), 
+% y a la derecha de un canio azul. Ayuda: si tengo una caniería a la izquierda, ¿qué color tengo que mirar? 
+% Idem si tengo una caniería a la derecha.
 
-% Definir un predicado canieriaBienArmada/1, que nos indique si una cañería está bien armada o no. 
-% Una cañería está bien armada si a cada elemento lo puedo enchufar al inmediato siguiente, de acuerdo a lo indicado 
+% Definir un predicado canieriaBienArmada/1, que nos indique si una caniería está bien armada o no. 
+% Una caniería está bien armada si a cada elemento lo puedo enchufar al inmediato siguiente, de acuerdo a lo indicado 
 % al definir el predicado puedoEnchufar/2.
 
 canieriaBienArmada([_|Resto]):-length(Resto,0).

@@ -41,7 +41,7 @@ tienePlata(valen,1000).
 tienePlata(lucas,10).
 
 sabeIdiomaImportante(valen,ingles).
-sabeIdiomaImportante(lucas,español).
+sabeIdiomaImportante(lucas,espaniol).
 
 %Discipulo (A,B), misma disciplina, edad en un rango, B experiencia
 
