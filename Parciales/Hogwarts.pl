@@ -17,7 +17,7 @@ caracteriza(draco,orgullo).
 caracteriza(hermione,inteligencia).
 caracteriza(hermione,orgullo).
 caracteriza(hermione,responsabilidad).
-% caracteriza(hermione,amistoso). sino no puede haber una cadena de amistad.
+caracteriza(hermione,amistoso). % sino no puede haber una cadena de amistad.
 
 odiariaQuedar(draco, hufflepuff).
 odiariaQuedar(harry, slytherin).
@@ -69,8 +69,17 @@ casaApropiada(Personaje,Casa):-
 
 cadenaDeAmistades(ListaMagos):-
     forall(member(Mago,ListaMagos),caracteriza(Mago,amistoso)),
-    casa(Casa),
-    forall(member(Mago,ListaMagos),casaApropiada(Mago,Casa)).
+    puedeEstarCasaSiguiente(ListaMagos).
+
+puedeEstarCasaSiguiente([_]).
+
+puedeEstarCasaSiguiente([Mago|RestoMagos]):-
+    primerElemento(RestoMagos, Mago2),
+    casaApropiada(Mago, Casa),
+    casaApropiada(Mago2, Casa),
+    puedeEstarCasaSiguiente(RestoMagos).
+
+primerElemento([X|_], X).
 
 % Parte 2 - La copa de las casas
 
